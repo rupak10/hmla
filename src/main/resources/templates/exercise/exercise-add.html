@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<section>
+		<!-- main content -->
+		<main class="mt-1 p-2">
+			<div class="container">
+
+				<nav class="mt-1 mb-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/exercise">Exercise Tracker</a></li>
+						<li class="breadcrumb-item">Add</li>
+					</ol>
+				</nav>
+
+				<div class="row">
+					<div th:if="${msg}" class="col-md-6 mb-3 alert alert-danger" style="margin-left:10px;">
+						<span th:text="${msg}"></span>
+					</div>
+				</div>
+				
+				<form th:action="@{/exercise/add}" th:object="${exercise}" method="post">
+
+					<div class="row">
+						<div class="col-md-3">
+							<label for="exerciseName" class="form-label">Exercise Name</label>
+							<input class="form-control" type="text" id="exerciseName" th:field="*{exerciseName}" required/>
+						</div>
+						<div class="col-md-3">
+							<label for="totalMinutes" class="form-label">Total Minutes</label>
+							<input class="form-control" type="text" id="totalMinutes" th:field="*{totalMinutes}" pattern="[0-9]+" required/>
+						</div>
+
+						<div class="col-md-3">
+							<label for="caloriesBurnt" class="form-label">Calories Burnt</label>
+							<input class="form-control" type="text" id="caloriesBurnt" th:field="*{caloriesBurnt}" pattern="[0-9]+" required/>
+						</div>
+						<div class="col-md-3">
+							<label for="exerciseDate" class="form-label">Exercise Date</label>
+							<input class="form-control" type="date" id="exerciseDate" th:field="*{exerciseDate}" required/>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-5 mt-4">
+							<a href="/exercise" class="btn btn-warning" style="margin-right: 15px;"> Back</a>
+							<button type="submit" class="btn btn-success"> Save </button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+
+		</main>
+		<!-- main content end-->
+	</section>
+
+</body>
+
+</html>

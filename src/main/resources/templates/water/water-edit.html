@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<section>
+		<!-- main content -->
+		<main class="mt-1 p-2">
+			<div class="container">
+
+				<nav class="mt-1 mb-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/water">Water Tracker</a></li>
+						<li class="breadcrumb-item">Edit</li>
+					</ol>
+				</nav>
+
+				<div class="row">
+					<div th:if="${msg}" class="col-md-6 mb-3 alert alert-danger" style="margin-left:10px;">
+						<span th:text="${msg}"></span>
+					</div>
+				</div>
+				
+				<form th:action="@{/water/edit}" th:object="${water}" method="post">
+
+					<div class="row">
+						<input type="hidden" th:field="*{id}"/>
+
+						<div class="col-md-6">
+							<label for="amount" class="form-label">Amount(Litre)</label>
+							<input class="form-control" type="text" id="amount" th:field="*{amount}" required/>
+						</div>
+						<div class="col-md-6">
+							<label for="intakeDate" class="form-label">Date</label>
+							<input class="form-control" type="date" id="intakeDate" th:field="*{intakeDate}" required/>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-md-5 mt-4">
+							<a href="/water" class="btn btn-warning" style="margin-right: 15px;"> Back</a>
+							<button type="submit" class="btn btn-success"> Update </button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+
+		</main>
+		<!-- main content end-->
+	</section>
+
+</body>
+
+</html>

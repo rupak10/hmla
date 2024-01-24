@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" />
+  <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        background-color: #ffffff;
+        padding: 20px; /* Reduced padding */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px; /* Adjust the width as needed */
+        width: 100%;
+    }
+
+    form {
+        max-width: 100%; /* Full width of the container */
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        color: #007bff;
+    }
+
+    button {
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="mb-4">Register Here</h2>
+
+  <div class="alert alert-danger" style="height:60px;" th:if="${msg}">
+    <p class="text-danger" th:text="${msg}">Error message</p>
+  </div>
+
+  <form th:action="@{/register}" th:object="${signupRequest}" method="post">
+    <div class="form-group mb-3">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="surname">Surname:</label>
+      <input type="text" class="form-control" id="surname" th:field="*{surname}">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" th:field="*{email}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password"  th:field="*{password}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+
+</body>
+</html>
